@@ -24,6 +24,29 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var services = scope.ServiceProvider;
+
+        var context = services.GetRequiredService<ParisSportifContext>();
+        var env = services.GetRequiredService<IWebHostEnvironment>();
+
+        DbInitializer.Initialize(context, env);
+
+        Console.WriteLine("✔ Base de données seedée avec succès !");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("❌ Erreur lors du seeding de la base de données :");
+        Console.WriteLine(ex.Message);
+
+        if (ex.InnerException != null)
+            Console.WriteLine("➡ InnerException : " + ex.InnerException.Message);
+    }
+}
+
 app.MapControllers();
 
 app.Run();

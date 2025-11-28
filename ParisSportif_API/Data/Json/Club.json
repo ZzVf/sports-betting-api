@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 10,
+    "Name": "Manchester City",
+    "Logo": "mancity.png",
+    "Ranking": 1,
+    "LigueId": 1
+  },
+  {
+    "Id": 11,
+    "Name": "Liverpool FC",
+    "Logo": "liverpool.png",
+    "Ranking": 2,
+    "LigueId": 1
+  }
+]
