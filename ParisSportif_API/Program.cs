@@ -1,6 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using ParisSportif_API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ParisSportifContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=ParisSportifAPI;Username=postgres;"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
