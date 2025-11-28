@@ -13,7 +13,7 @@ public class Club
     [Required, MaxLength(100)]
     public string Name { get; set; }
     [Required]
-    public string Logo { get; set; }
+    public string? Logo { get; set; }
     [Required]
     public int Ranking { get; set; }
     public int LigueId { get; set; }
