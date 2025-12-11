@@ -200,11 +200,11 @@ namespace ParisSportif_API.Migrations
                     b.Property<int>("Score2")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("isCanceled")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("isTopMatch")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("matchStatus")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

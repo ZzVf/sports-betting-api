@@ -124,7 +124,7 @@ namespace ParisSportif_API.Migrations
                     Score2 = table.Column<int>(type: "integer", nullable: false),
                     MatchDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     isTopMatch = table.Column<bool>(type: "boolean", nullable: false),
-                    isCanceled = table.Column<bool>(type: "boolean", nullable: false),
+                    matchStatus = table.Column<int>(type: "integer", nullable: false),
                     ClubId1 = table.Column<int>(type: "integer", nullable: false),
                     ClubId2 = table.Column<int>(type: "integer", nullable: false)
                 },

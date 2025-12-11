@@ -12,7 +12,7 @@ using ParisSportif_API.Data;
 namespace ParisSportif_API.Migrations
 {
     [DbContext(typeof(ParisSportifContext))]
-    [Migration("20251211101137_initialcreate")]
+    [Migration("20251211143042_initialcreate")]
     partial class initialcreate
     {
         /// <inheritdoc />
@@ -203,11 +203,11 @@ namespace ParisSportif_API.Migrations
                     b.Property<int>("Score2")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("isCanceled")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("isTopMatch")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("matchStatus")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
