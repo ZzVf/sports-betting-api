@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "Name": "Premier League",
+    "Logo": "premierleague.png"
+  },
+  {
+    "Id": 2,
+    "Name": "La Liga",
+    "Logo": "laliga.png"
+  }
+]

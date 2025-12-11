@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 100,
+    "Score1": 3,
+    "Score2": 1,
+    "MatchDateTime": "2025-03-12T20:45:00",
+    "isTopMatch": true,
+    "isCanceled": false,
+    "ClubId1": 10,
+    "ClubId2": 11
+  },
+  {
+    "Id": 101,
+    "Score1": 1,
+    "Score2": 1,
+    "MatchDateTime": "2025-04-05T21:00:00",
+    "isTopMatch": true,
+    "isCanceled": false,
+    "ClubId1": 12,
+    "ClubId2": 13
+  }
+]

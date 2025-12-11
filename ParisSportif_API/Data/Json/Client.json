@@ -1,9 +1,0 @@
-{
-  "Id": 200,
-  "Name": "Andreas17",
-  "Password": "Hash1234!",
-  "CreationDate": "2025-02-10T14:30:00",
-  "Points": 500,
-  "isBlocked": false,
-  "isAdmin": false
-}

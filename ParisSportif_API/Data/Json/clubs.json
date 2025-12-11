@@ -12,5 +12,19 @@
     "Logo": "liverpool.png",
     "Ranking": 2,
     "LigueId": 1
+  },
+  {
+    "Id": 12,
+    "Name": "Real Madrid",
+    "Logo": "realmadrid.png",
+    "Ranking": 1,
+    "LigueId": 2
+  },
+  {
+    "Id": 13,
+    "Name": "FC Barcelona",
+    "Logo": "barcelona.png",
+    "Ranking": 2,
+    "LigueId": 2
   }
 ]

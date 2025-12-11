@@ -24,29 +24,49 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapControllers();
+
+// =====================
+// INITIALISATION DB
+// =====================
+
+// On cr�e un "scope" de services.
+// Cela permet de r�soudre les d�pendances de type "scoped" (comme le DbContext) 
+// en dehors d'une requ�te HTTP, ici au d�marrage de l'application.
 using (var scope = app.Services.CreateScope())
 {
+    // On r�cup�re le conteneur de services du scope.
+    var services = scope.ServiceProvider;
+
     try
     {
-        var services = scope.ServiceProvider;
-
+        // On demande une instance de notre DbContext (PokISPOBowlContext),
+        // qui servira � appliquer les migrations et ins�rer les donn�es.
         var context = services.GetRequiredService<ParisSportifContext>();
-        var env = services.GetRequiredService<IWebHostEnvironment>();
 
-        DbInitializer.Initialize(context, env);
+        // On r�cup�re la fabrique de loggers.
+        var loggerFactory = services.GetRequiredService<ILoggerFactory>();
 
-        Console.WriteLine("✔ Base de données seedée avec succès !");
+        // On cr�e un logger sp�cifique pour la cat�gorie "DbInitializer".
+        // Cela nous permettra de suivre les messages g�n�r�s pendant l'initialisation.
+        var logger = loggerFactory.CreateLogger("DbInitializer");
+
+        // On lance l'initialisation de la base de donn�es :
+        // - Application des migrations
+        // - V�rification si la table Clients est vide
+        // - Lecture du fichier clients.json et insertion des donn�es si n�cessaire
+        DbInitializer.Initialize(context, logger);
     }
     catch (Exception ex)
     {
-        Console.WriteLine("❌ Erreur lors du seeding de la base de données :");
-        Console.WriteLine(ex.Message);
+        // Si une erreur se produit (connexion DB, JSON introuvable, etc.),
+        // on r�cup�re un logger pour la cat�gorie "Program" afin de tracer l'erreur.
+        var logger = services.GetRequiredService<ILogger<Program>>();
 
-        if (ex.InnerException != null)
-            Console.WriteLine("➡ InnerException : " + ex.InnerException.Message);
+        // On enregistre l'erreur avec un message explicite et la stacktrace.
+        logger.LogError(ex, "Erreur lors de l'initialisation de la base de donn�es.");
     }
 }
-
-app.MapControllers();
+// =====================
 
 app.Run();
