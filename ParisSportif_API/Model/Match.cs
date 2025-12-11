@@ -4,6 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectFootAPI.Model;
 
+public enum MatchStatus
+{
+    Pending = 0,
+    Club1Win = 1,
+    Club2Win = 2,
+    Draw = 3,
+    Canceled = 4,
+}
+
 //TODO : Modifier la logique du model
 public class Match
 {
@@ -15,7 +24,8 @@ public class Match
     public int Score2 { get; set; }
     public DateTime MatchDateTime { get; set; }
     public bool isTopMatch { get; set; }
-    public bool isCanceled { get; set; }
+    [Required]
+    public MatchStatus matchStatus { get; set; }
     public int ClubId1 { get; set; }
     [ForeignKey("ClubId1")]
     [InverseProperty("MatchesClub1")]
