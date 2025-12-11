@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectFootAPI.Model;
 
+//TODO : Modifier la logique du model
 public class Match
 {
     [Key]
