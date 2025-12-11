@@ -1,5 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ParisSportif_API.Data.Converter;
 using ProjectFootAPI.Model;
 
 namespace ParisSportif_API.Data;
@@ -17,4 +19,14 @@ public class ParisSportifContext : DbContext
     public DbSet<Club> Clubs { get; set; }
     public DbSet<Ligue> Ligues { get; set; }
     public DbSet<Match> Matches { get; set; }
+
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+    {
+        builder.Properties<DateTime>()
+            .HaveConversion<UtcConverter>();
+    }
+
+
+
 }
