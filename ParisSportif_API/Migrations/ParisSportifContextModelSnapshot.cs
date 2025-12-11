@@ -72,8 +72,11 @@ namespace ParisSportif_API.Migrations
                     b.Property<int>("Point")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("isVictory")
-                        .HasColumnType("boolean");
+                    b.Property<int>("Prediction")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

@@ -3,7 +3,6 @@
     "Id": 200,
     "Name": "Andreas17",
     "Password": "Test1234!",
-    "CreationDate": "2025-02-10T14:30:00",
     "Points": 500,
     "isBlocked": false,
     "isAdmin": false
@@ -12,7 +11,6 @@
     "Id": 201,
     "Name": "AdminUser",
     "Password": "Admin123!",
-    "CreationDate": "2025-01-01T10:00:00",
     "Points": 1000,
     "isBlocked": false,
     "isAdmin": true

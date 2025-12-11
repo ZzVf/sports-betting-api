@@ -153,7 +153,8 @@ namespace ParisSportif_API.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Point = table.Column<int>(type: "integer", nullable: false),
                     BetTiming = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    isVictory = table.Column<bool>(type: "boolean", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Prediction = table.Column<int>(type: "integer", nullable: false),
                     ClientId = table.Column<int>(type: "integer", nullable: false),
                     MatchId = table.Column<int>(type: "integer", nullable: false)
                 },
