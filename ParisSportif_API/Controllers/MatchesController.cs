@@ -42,6 +42,18 @@ namespace ParisSportif_API.Controllers
             return match;
         }
 
+        // GET: api/Matches/club/5
+        [HttpGet("club/{id}")]
+        public ActionResult<List<Match>> GetClubMatches(int id)
+        {
+            List<Match> matches = (List<Match>)[.. _context.Matches.Where(m => m.ClubId1 == id || m.ClubId2 == id)];
+
+            if (matches == null || matches.Count() == 0)
+                return NotFound();
+
+            return matches;
+        }
+
         // PUT: api/Matches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

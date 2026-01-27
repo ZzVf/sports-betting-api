@@ -1,52 +1,47 @@
 [
   {
-    "Id": 100,
     "Score1": 3,
     "Score2": 1,
     "MatchDateTime": "2025-03-12T20:45:00Z",
     "isTopMatch": true,
     "matchStatus": 1,
-    "ClubId1": 10,
-    "ClubId2": 11
+    "ClubId1": 1,
+    "ClubId2": 2
   },
   {
-    "Id": 101,
     "Score1": 1,
     "Score2": 1,
     "MatchDateTime": "2025-04-05T21:00:00Z",
     "isTopMatch": true,
     "matchStatus": 3,
-    "ClubId1": 12,
-    "ClubId2": 13
+    "ClubId1": 3,
+    "ClubId2": 4
   },
   {
-    "Id": 102,
     "Score1": 0,
     "Score2": 2,
     "MatchDateTime": "2025-05-18T18:30:00Z",
     "isTopMatch": false,
     "matchStatus": 2,
-    "ClubId1": 11,
-    "ClubId2": 10
+    "ClubId1": 2,
+    "ClubId2": 1
   },
   {
-    "Id": 103,
     "Score1": 0,
     "Score2": 0,
     "MatchDateTime": "2025-06-01T20:00:00Z",
     "isTopMatch": false,
     "matchStatus": 0,
-    "ClubId1": 10,
-    "ClubId2": 12
+    "ClubId1": 1,
+    "ClubId2": 3
   },
   {
-    "Id": 104,
     "Score1": 2,
     "Score2": 0,
     "MatchDateTime": "2025-07-11T17:00:00Z",
     "isTopMatch": false,
     "matchStatus": 4,
-    "ClubId1": 13,
-    "ClubId2": 11
+    "ClubId1": 4,
+    "ClubId2": 2
   }
 ]

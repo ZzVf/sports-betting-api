@@ -1,6 +1,5 @@
 [
   {
-    "Id": 200,
     "Name": "Andreas17",
     "Password": "Test1234!",
     "Points": 500,
@@ -8,7 +7,6 @@
     "isAdmin": false
   },
   {
-    "Id": 201,
     "Name": "AdminUser",
     "Password": "Admin123!",
     "Points": 1000,

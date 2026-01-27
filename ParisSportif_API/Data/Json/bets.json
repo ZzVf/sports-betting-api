@@ -1,18 +1,16 @@
 [
   {
-    "Id": 300,
     "Point": 50,
     "Status": 0,
     "Prediction": 0,
-    "ClientId": 200,
-    "MatchId": 100
+    "ClientId": 1,
+    "MatchId": 1
   },
   {
-    "Id": 301,
     "Point": 100,
     "Status": 1,
     "Prediction": 2,
-    "ClientId": 201,
-    "MatchId": 101
+    "ClientId": 2,
+    "MatchId": 1
   }
 ]
