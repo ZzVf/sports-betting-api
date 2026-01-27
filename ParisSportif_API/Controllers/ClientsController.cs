@@ -78,10 +78,17 @@ namespace ParisSportif_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Clients.Add(client);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClient", new { id = client.Id }, client);
+                return CreatedAtAction("GetClient", new { id = client.Id }, client);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erreur interne du serveur.");
+            }
         }
 
         // DELETE: api/Clients/5

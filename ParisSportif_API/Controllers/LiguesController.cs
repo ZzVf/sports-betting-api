@@ -78,10 +78,17 @@ namespace ParisSportif_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Ligue>> PostLigue(Ligue ligue)
         {
-            _context.Ligues.Add(ligue);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Ligues.Add(ligue);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLigue", new { id = ligue.Id }, ligue);
+                return CreatedAtAction("GetLigue", new { id = ligue.Id }, ligue);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erreur interne du serveur.");
+            }
         }
 
         // DELETE: api/Ligues/5

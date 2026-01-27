@@ -78,10 +78,17 @@ namespace ParisSportif_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Bet>> PostBet(Bet bet)
         {
-            _context.Bets.Add(bet);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Bets.Add(bet);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBet", new { id = bet.Id }, bet);
+                return CreatedAtAction("GetBet", new { id = bet.Id }, bet);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erreur interne du serveur.");
+            }
         }
 
         // DELETE: api/Bets/5

@@ -78,10 +78,17 @@ namespace ParisSportif_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Club>> PostClub(Club club)
         {
-            _context.Clubs.Add(club);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Clubs.Add(club);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClub", new { id = club.Id }, club);
+                return CreatedAtAction("GetClub", new { id = club.Id }, club);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erreur interne du serveur.");
+            }
         }
 
         // DELETE: api/Clubs/5

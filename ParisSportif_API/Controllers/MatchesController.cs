@@ -90,10 +90,17 @@ namespace ParisSportif_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Match>> PostMatch(Match match)
         {
-            _context.Matches.Add(match);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Matches.Add(match);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMatch", new { id = match.Id }, match);
+                return CreatedAtAction("GetMatch", new { id = match.Id }, match);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erreur interne du serveur.");
+            }
         }
 
         // DELETE: api/Matches/5
