@@ -26,7 +26,32 @@ public class ParisSportifContext : DbContext
         builder.Properties<DateTime>()
             .HaveConversion<UtcConverter>();
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Club>()
+            .HasOne(c => c.Ligue)
+            .WithMany(l => l.Clubs)
+            .HasForeignKey(c => c.LigueId)
+            .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Match>()
+            .HasOne(m => m.Club1)
+            .WithMany(c => c.MatchesClub1)
+            .HasForeignKey(m => m.ClubId1)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Match>()
+            .HasOne(m => m.Club2)
+            .WithMany(c => c.MatchesClub2)
+            .HasForeignKey(m => m.ClubId2)
+            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Bet>()
+            .HasOne(b => b.Client)
+            .WithMany(c => c.Bets)
+            .HasForeignKey(b => b.ClientId)
+            .OnDelete(DeleteBehavior.Restrict);
+        base.OnModelCreating(modelBuilder);
+    }
 
 
 }

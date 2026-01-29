@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ProjectFootAPI.Model;
 
@@ -29,6 +30,7 @@ public class Match
     public int ClubId1 { get; set; }
     [ForeignKey("ClubId1")]
     [InverseProperty("MatchesClub1")]
+
     public Club Club1 { get; set; }
     public int ClubId2 { get; set; }
     [ForeignKey("ClubId2")]

@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjectFootAPI.Model;
@@ -21,7 +22,9 @@ public class Club
     public Ligue? Ligue { get; set; }
     public ICollection<Client>? Favorites { get; set; } = new List<Client>();
     [InverseProperty("Club1")]
+    [JsonIgnore]
     public ICollection<Match>? MatchesClub1 { get; set; } = new List<Match>();
     [InverseProperty("Club2")]
+    [JsonIgnore]
     public ICollection<Match>? MatchesClub2 { get; set; } = new List<Match>();
 }

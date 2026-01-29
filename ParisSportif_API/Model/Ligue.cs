@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ProjectFootAPI.Model;
 
@@ -11,6 +12,7 @@ public class Ligue
     public string Name { get; set; }
     [Required]
     public string? Logo { get; set; }
+    [JsonIgnore]
     public ICollection<Club>? Clubs { get; set; } = new List<Club>();
     public ICollection<Client>? Favorites { get; set; } = new List<Client>();
 }

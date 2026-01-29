@@ -25,7 +25,11 @@ namespace ParisSportif_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Match>>> GetMatches()
         {
-            return await _context.Matches.ToListAsync();
+            return await _context.Matches
+                .Include(m => m.Club1)
+                .Include(m => m.Club2)
+                .Include(m => m.Club1.Ligue)
+                .ToListAsync();
         }
 
         // GET: api/Matches/5
