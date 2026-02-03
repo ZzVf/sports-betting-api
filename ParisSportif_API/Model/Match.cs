@@ -20,6 +20,7 @@ public class Match
     [Key]
     public int Id { get; set; }
     [Required]
+    [Range(0, int.MaxValue, ErrorMessage = "Score must be a non-negative integer.")]
     public int Score1 { get; set; }
     [Required]
     public int Score2 { get; set; }
@@ -31,11 +32,11 @@ public class Match
     [ForeignKey("ClubId1")]
     [InverseProperty("MatchesClub1")]
 
-    public Club Club1 { get; set; }
+    public Club? Club1 { get; set; }
     public int ClubId2 { get; set; }
     [ForeignKey("ClubId2")]
     [InverseProperty("MatchesClub2")]
-    public Club Club2 { get; set; }
+    public Club? Club2 { get; set; }
     public ICollection<Bet>? Bets { get; set; } = new List<Bet>();
 
 }

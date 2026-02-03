@@ -250,7 +250,7 @@ namespace ParisSportif_API.Migrations
                     b.HasOne("ProjectFootAPI.Model.Client", "Client")
                         .WithMany("Bets")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ProjectFootAPI.Model.Match", "Match")
@@ -269,7 +269,7 @@ namespace ParisSportif_API.Migrations
                     b.HasOne("ProjectFootAPI.Model.Ligue", "Ligue")
                         .WithMany("Clubs")
                         .HasForeignKey("LigueId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Ligue");
@@ -280,13 +280,13 @@ namespace ParisSportif_API.Migrations
                     b.HasOne("ProjectFootAPI.Model.Club", "Club1")
                         .WithMany("MatchesClub1")
                         .HasForeignKey("ClubId1")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ProjectFootAPI.Model.Club", "Club2")
                         .WithMany("MatchesClub2")
                         .HasForeignKey("ClubId2")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Club1");
