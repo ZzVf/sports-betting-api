@@ -73,6 +73,22 @@ namespace ParisSportif_API.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/points")]
+        public async Task<IActionResult> UpdatePoints(int id, int points)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+                return NotFound("Client introuvable.");
+
+            if (points < 0)
+                return BadRequest("Les points ne peuvent pas être négatifs.");
+
+            client.Points = points;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // POST: api/Clients
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
