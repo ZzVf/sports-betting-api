@@ -92,20 +92,34 @@ namespace ParisSportif_API.Controllers
         // POST: api/Matches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Match>> PostMatch(Match match)
+        public async Task<ActionResult<Match>> PostMatch([FromBody] Match match)
         {
             try
             {
+                if (match.ClubId1 <= 0 || match.ClubId2 <= 0)
+                    return BadRequest("ClubId1 et ClubId2 doivent être > 0.");
+
+                if (match.ClubId1 == match.ClubId2)
+                    return BadRequest("Club1 et Club2 doivent être différents.");
+
+                var club1Exists = await _context.Clubs.AnyAsync(c => c.Id == match.ClubId1);
+                var club2Exists = await _context.Clubs.AnyAsync(c => c.Id == match.ClubId2);
+
+                if (!club1Exists || !club2Exists)
+                    return BadRequest("Un des clubs n'existe pas.");
+
                 _context.Matches.Add(match);
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetMatch", new { id = match.Id }, match);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500, "Erreur interne du serveur.");
+                // en DEV, affiche l'erreur réelle
+                return StatusCode(500, "Erreur interne du serveur : " + ex.Message);
             }
         }
+
 
         // DELETE: api/Matches/5
         [HttpDelete("{id}")]
