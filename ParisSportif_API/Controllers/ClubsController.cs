@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using ParisSportif_API.Data;
 using ProjectFootAPI.Model;
 
@@ -80,14 +81,24 @@ namespace ParisSportif_API.Controllers
         {
             try
             {
+                var exists = await _context.Clubs.AnyAsync(c =>
+                    c.LigueId == club.LigueId && c.Ranking == club.Ranking);
+
+                if (exists)
+                    return BadRequest("Ce classement est déjà utilisé dans cette ligue.");
+
                 _context.Clubs.Add(club);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetClub", new { id = club.Id }, club);
+                return CreatedAtAction(nameof(GetClub), new { id = club.Id }, club);
             }
-            catch (Exception)
+            catch (DbUpdateException ex) when (ex.InnerException is PostgresException pg && pg.SqlState == "23505")
             {
-                return StatusCode(500, "Erreur interne du serveur.");
+                return BadRequest("Ce classement est déjà utilisé dans cette ligue.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erreur interne du serveur : " + ex.Message);
             }
         }
 
