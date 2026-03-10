@@ -51,7 +51,12 @@ namespace ParisSportif_API.Controllers
         [HttpGet("club/{id}")]
         public ActionResult<List<Match>> GetClubMatches(int id)
         {
-            List<Match> matches = (List<Match>)[.. _context.Matches.Where(m => m.ClubId1 == id || m.ClubId2 == id)];
+            List<Match> matches = (List<Match>)_context.Matches
+                .Where(m => m.ClubId1 == id || m.ClubId2 == id)
+                .Include(m => m.Club1)
+                .Include(m => m.Club2)
+                .Include(m => m.Club1.Ligue)
+                .ToList();
 
             if (matches == null || matches.Count() == 0)
                 return NotFound();
